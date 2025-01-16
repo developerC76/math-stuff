@@ -54,9 +54,7 @@ def inv3x3(mat):
     det = det3x3(mat)
     if det == 0:
         return "Matrix is singular (no inverse)"
-    print(det)
     adj_mat = adj(cofactor(mat))
-    print(adj_mat)
     inv = []
     for i in range(3):
         inv.append([adj_mat[i][0] / det, adj_mat[i][1] / det, adj_mat[i][2] / det])
@@ -66,12 +64,19 @@ def inv3x3(mat):
 
 if __name__ == "__main__":
     print("Matrix Inverse")
-    size = int(input("Number of rows in square matrix (2 or 3): "))
+    size = input("Number of rows in square matrix (2 or 3): ")
+    opt = ["2", "3"]
+    while not size in opt: 
+        size = input("Num of rows (2 or 3): ")
+    size = int(size)
     mat = []
     for i in range(size):
         mat.append([])
         for j in range(size):
-            num = int(input(f"A{i+1}{j+1}: "))
+            num = input(f"A{i+1}{j+1}: ")
+            while not num.isdigit(): 
+                num = input(f"A{i}{j+1}: ")
+            num = int(num)
             mat[i].append(num)
 
     print("Original Matrix: ")
